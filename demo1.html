@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding:0;
+    }
+    #div1{
+      position: absolute;
+      width:200px;
+      height: 200px;
+      top:150px;
+      left:150px;
+      background: pink;
+      border:1px solid #666;
+    }
+  </style>
+</head>
+<body>
+<div id="div1"></div>  
+<p class="p1"></p>
+</body>
+<script>
+  var div1 = document.querySelector('#div1');
+  var p1 = document.querySelector('.p1');
+  //var div1 = document.getElementById('div1');
+
+
+
+
+  div1.onmousedown = function(ev){
+    
+    var ev = ev || window.event;
+
+    var ninL = ev.clientX - div1.offsetLeft;
+    var minT = ev.clientY - div1.offsetTop;
+
+    console.log(ev);
+    console.log('ev.clientX====' + ev.clientX);
+    console.log('ev.pageX====' + ev.pageX);
+
+
+
+    document.onmousemove = function(ev){
+      p1.innerHTML = ev.clientX - ninL;
+      var ev = ev || window.event;
+   
+      div1.style.left = ev.clientX - ninL + 'px';
+      div1.style.top = ev.clientY - minT + 'px';
+    }
+
+    document.onmouseup = function(){
+      document.onmousemove = null;
+      document.onmouseup = null;
+    }
+
+  }
+
+
+  
+  
+  
+
+
+
+</script>
+</html>
